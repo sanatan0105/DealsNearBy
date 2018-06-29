@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+   <title>Near By</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body >
+<div class="navbar-fixed">
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+  <nav class="red darken-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Deals Nearby</a>
+		<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+		<a href="search.html"  class=" right"><i class="material-icons">search</i></a>
+		
+    </div>
+  </nav>
+</div>  
+<ul id="nav-mobile" class="side-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+       
+      </ul>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+		<h5 class="center grey-text">Login</h5><hr/><br/>
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="email" type="email" class="validate">
+				<label for="email">Email</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="password" type="password" class="validate">
+				<label for="email">Password</label>
+			</div>
+		</div>
+		<center><button id="loginButton" class="btn waves-effect red darken-1 waves-light" type="submit" name="action">Submit
+			<i class="material-icons right">send</i>
+		</button></center><br/>
+		<center><div class="chip">
+		OR
+		</div></center><br/>
+		<center><a href="register.html"><button id="loginButton" class="btn waves-effect red darken-1 waves-light" type="submit" name="action">Register
+			<i class="material-icons right">send</i>
+		</button></a></center>
+		
+	</div>
+  </div>
+
+
+<br/>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">This app will help users to find the shops nearby using the location provided by the users. They can see all the offers and details of the shop nearby.</p>
+
+
+        </div>
+        
+       
+      </div>
+    </div>
+   =
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#loginButton").click(function(){
+			var email=$("#email").val();
+			var password=$("#password").val();
+			if(email=='')
+			{
+				 Materialize.toast('Email is empty', 4000);
+			}
+			else if(password=='')
+			{
+			 Materialize.toast('Password is empty', 4000);
+			
+			}
+			else
+			{
+				$.ajax({
+					url: 'https://www.kezinking.com/nearby/login.php',
+					type: 'POST',
+					data: {password:password,email:email},
+					success: function (msg) {
+							if(msg==1)
+							{
+								window.location.href="category.html";
+							}
+							else{
+								 Materialize.toast(msg, 4000);
+							}
+						
+					},
+					error: function(){
+						alert("error in ajax form submission");
+					}
+				});
+				
+			}
+		});
+	});
+	
+	</script>
+  </body>
+</html>

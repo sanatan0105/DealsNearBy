@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Near By</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body >
+<div class="navbar-fixed">
+  <nav class="red darken-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Deals Nearby</a>
+		<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+		<a href="search.html"  class=" right"><i class="material-icons">search</i></a>
+		
+    </div>
+  </nav>
+</div>  
+<ul id="nav-mobile" class="side-nav">
+        <li><a href="category.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="">Confirmation</a></li>
+        <li><a href="location.html">Location</a></li>
+      </ul>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container" id="productResult">
+      <h5 class="center grey-text">Select a category</h5><hr/><br/>
+		<div class="row">
+			<div >
+			<div class="col s6">
+				<center>
+					<div class=" ">
+						
+						<img class="responsive-img circle z-depth-4"  src="img/perfume.png">
+						<button style="margin-bottom:30px;" class="btn red btn-small" id="spa" onclick="get_id(this.id)">Spa/Salon</button>
+					</div>
+				</center>
+			</div>
+			<div class="col s6">
+				<center>
+					<div class=" ">
+						<img class="responsive-img circle z-depth-4"  src="img/cutlery.png">
+						<button style="margin-bottom:30px;" class="btn red btn-small" id="hotel" onclick="get_id(this.id)">Resturant</button>
+					</div>
+				</center>
+			</div>
+			<br/>
+			</div>
+			<div class="col s6">
+				<center>
+					<div class=" ">
+						<img class="responsive-img circle z-depth-4"  src="img/doctor.png">
+						<button style="margin-bottom:30px;" class="btn red btn-small" id="hospital" onclick="get_id(this.id)">Doctor</button>
+					</div>
+				</center>
+			</div>
+			<div class="col s6">
+				<center>
+					<div class=" ">
+						<img class="responsive-img circle z-depth-4"  src="img/pamela.png">
+						<button style="margin-bottom:30px;" class="btn red btn-small" id="fashion shops" onclick="get_id(this.id)">Fashion</button>
+					</div>
+				</center>
+			</div>
+			
+			
+		</div>
+
+    </div>
+  </div>
+
+
+
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">This app will help users to find the shops nearby using the location provided by the users. They can see all the offers and details of the shop nearby.</p>
+
+
+        </div>
+        
+       
+      </div>
+    </div>
+    
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+	<script>
+	function get_id(id)
+	{
+		$.ajax({
+				url: 'https://www.kezinking.com/nearby/product.php',
+				type: 'POST',
+				data: {id:id},
+				success: function (msg) {
+						$("#productResult").html(msg);
+					
+				},
+				error: function(){
+					alert("error in ajax form submission");
+				}
+			});
+			$("#productResult").html('Loding...');
+	}
+	
+	$(".request").click(function(){
+		
+	});
+	jQuery(document).ready(function($) {
+
+  if (window.history && window.history.pushState) {
+
+    window.history.pushState('forward', null, './#forward');
+
+    $(window).on('popstate', function() {
+      window.location.href="category.html";
+    });
+
+  }
+});
+	
+	</script>
+  </body>
+</html>
